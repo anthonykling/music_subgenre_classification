@@ -24,3 +24,8 @@ We did some initial data cleaning including:
 ## Conclusion and Future Directions
 
 ## Description of Repository
+The building_AcousticBrainz_dataset.ipynb notebook illustrates how we use the MusicBrainz and AcousticBrainz API to create our dataset.  The dataset is presented as a folder of json files; each file represents a song.
+
+The Cleaning_and_EDA folder contains scripts and notebooks showing how we built our dataset from these json files into a pandas DataFrame.  In addition, it also demonstrates how cleaning process and exploratory data analysis we considered.
+
+The Models folder contains models.
