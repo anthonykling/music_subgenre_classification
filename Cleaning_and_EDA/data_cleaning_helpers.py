@@ -2,10 +2,10 @@ import pandas as pd
 import json
 import os
 
-## This functions concern removing certain phrases in the mbdata of a recording.
+## These functions concern removing certain phrases in the mbdata of a recording.
 
 # NOTE: This function will likely not need to be used in light of using the more robust
-# remove_phrease function
+# remove_phrase function
 
 def get_joinphrase(col):
     '''
