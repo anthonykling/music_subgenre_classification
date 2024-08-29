@@ -38,8 +38,6 @@ To reduce features, we used a mixture of correlation analysis and PCA.  We consi
 3. We performed PCA on each of the groups, accounting for 90% of the variation.
 4. The new features coming from PCA along with the scalar features comprised the new set of **476 features**.
 
-
-
 ## Modeling Approach
 
 We used a neural network with hidden layers of sizes 500, 100, and 20. The output layer was of size 4. The input layer was of size 2614, the number of numerical features available after deleting features which had constant values throughout the data. The input data is first normalized using the calculated mean and standard deviation of the training data, before being input into the model.
