@@ -29,6 +29,7 @@ We did some preliminary data analysis to get a rough idea of how our data looked
 Below illustrates a histogram of the means and variances of each feature for each genre.
 ![image](https://github.com/user-attachments/assets/59340f6f-a7ec-4c23-b8e6-83728fb8abb7)
 ![image](https://github.com/user-attachments/assets/f43ec3f4-63f1-4aee-b4f3-ff16ece9caf4 | width = 500)
+<img src = "https://github.com/user-attachments/assets/f43ec3f4-63f1-4aee-b4f3-ff16ece9caf4" width = 500>
 
 
 
