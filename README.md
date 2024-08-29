@@ -42,6 +42,18 @@ To reduce features, we used a mixture of correlation analysis and PCA.  We consi
 
 ## Modeling Approach
 
+We used a neural network with hidden layers of sizes 500, 100, and 20. The output layer was of size 4. The input layer was of size 2614, the number of numerical features available after deleting features which had constant values throughout the data. The input data is first normalized using the calculated mean and standard deviation of the training data, before being input into the model.
+
+The training data was first split into a training set of size 30000 and a test set of size 6885. The neural network was trained using a gradient descent algorithm with a learning rate of 0.005 and a momentum of 0.9. The batch size during training was 128, to help speed up optimization, and the loss was calculated using the binary cross entropy loss. The training took place over 50 epochs and took approximately 24.5 seconds for all 50 epochs.
+
+We then performed a 5-fold cross validation on the training set and found that each iteration gave similar accuracy scores. Further training on the test set did not significantly improve the accuracy scores of the model. The model was finally trained on the full training set and then evaluated on the test set:
+
+|           | Trance   | House  | Techno | Drum and Bass |
+| --------- | -------- | ------ | ------ | ------------- |
+| Accuracy  | 0.8630   | 0.7473 | 0.7981 | 0.9192        |
+| Recall    | 0.7604   | 0.6821 | 0.6419 | 0.8387        |
+| Precision | 0.7466   | 0.6964 | 0.6641 | 0.8377        |
+
 ## Conclusion and Future Directions
 
 ## Description of Repository
