@@ -48,7 +48,20 @@ We first tried a few standard machine learning models.  The following table summ
 | Gaussian NB     |   0.72   |  0.49  | 0.49   |    0.81       |
 | Bernoulli NB    |   0.74   | 0.68   | 0.80   |  0.84         |
 | Random Forest   |   0.854  | 0.758  |  0.785 | 0.887         |
-|     XGBoost     |  **0.883**   | **0.789**  | **0.803**  |  **0.909**        |
+|     **XGBoost**     |  **0.883**   | **0.789**  | **0.803**  |  **0.909**        |
+
+We can see that XGBoost outperforms all other models for each genre.  The following table summarizes the F1 score for each genre class:
+
+|                 | Trance   | House  | Techno | Drum and Bass |  
+| ---------       | -------- | ------ | ------ | ------------- |
+| Dummy Stratified|   0.28  | 0.41  | 0.30  |   0.24       |
+|      kNN        |   0.18   |  0.57  |  **0.68**  | 0.44          |
+| Gaussian NB     |   0.41   |  0.57  | 0.50   |    0.58       |
+| Bernoulli NB    |   0.47   | 0.56   | 0.62   |  0.63         |
+| Random Forest   |  0.68   | 0.64  | 0.53  |  0.71        |
+|  **XGBoost**    |  **0.77**   | **0.72**  | 0.60  |  **0.79**        |
+
+We can see that XGBoost outperforms in most except for Techno.  Please refer to the model notebooks for results on recall and precision.
 
 We used a neural network with hidden layers of sizes 500, 100, and 20. The output layer was of size 4. The input layer was of size 2614, the number of numerical features available after deleting features which had constant values throughout the data. The input data is first normalized using the calculated mean and standard deviation of the training data, before being input into the model.
 
