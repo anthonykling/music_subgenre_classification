@@ -17,7 +17,18 @@ AcousticBrainz does not store any audio files.  Rather, audio characteristics, s
 ## Exploratory Data Analysis
 We did some initial data cleaning including:
 - Removing duplicates based on MBID, followed by artist id and song title.
-- 
+- Removing songs with all four genre labels.  We concluded that these were likely inaccurately tagged.
+- Some data points were part of audiobooks, which we removed.
+- Some features were trivial (e.g. were all the same value), which we removed.
+- Some features were naturally scalar-valued, while others were vectors, i.e., lists—particularly those measured across various frequency bands. We expanded these vector features, creating a separate feature for each dimension.  **This resulted in roughly 2500 features.**
+  
+The metadata from MetaBrainz contains a 'tag' attribute, which contains the genre labels.  If any of the tags contained 'techno', 'house', 'trance', and/ or 'drum and bass' as a substring, then we labelled the song with that genre.
+
+We did some preliminary data analysis to get a rough idea of how our data looked.  However, due to the large amount of features, it was challenging to get a detailed sense of them.
+
+Below illustrates a histogram of the means of each feature for each genre.
+![image](https://github.com/user-attachments/assets/59340f6f-a7ec-4c23-b8e6-83728fb8abb7)
+
 
 ## Modeling Approach
 
