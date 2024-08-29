@@ -32,6 +32,13 @@ Below illustrates a histogram of the means and variances of each standardized fe
 
 We see that techno has greater mixture of variances and a flatter distribution of means, indicating that techno may be more diverse sonically while house has means concentrated closer to 0 and variances closer to 1, indicating that house may sound more 'generic'.
 
+To reduce features, we used a mixture of correlation analysis and PCA.  We considered a few different versions of the dataset with reduced features.  We outline the version we trained most of our models with:
+1. We removed all features with correlation above 0.90.
+2. We split the features into two groups: features which were initially scalar valued and features which were initially vector valued.  Among the vector valued ones, we further grouped the features based on if they were describing similar acoustic information (e.g. chords, melbands, loudness, etc...).
+3. We performed PCA on each of the groups, accounting for 90% of the variation.
+4. The new features coming from PCA along with the scalar features comprised the new set of **476 features**.
+
+
 
 ## Modeling Approach
 
