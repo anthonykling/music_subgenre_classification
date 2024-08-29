@@ -40,15 +40,15 @@ To reduce features, we used a mixture of correlation analysis and PCA.  We consi
 
 ## Modeling Approach
 
-We first tried a few standard machine learning models.  The following table summarizes our results for each genre class:
-|                 | Trance   | House  | Techno | Drum and Bass |
+We first tried a few standard machine learning models.  The following table summarizes our accuracies for each genre class:
+|                 | Trance   | House  | Techno | Drum and Bass |  
 | ---------       | -------- | ------ | ------ | ------------- |
-| Dummy Stratified|          |        |        |               |
-|      kNN        |          |        |        |               |
-| Gaussian NB     | 0.835    | 0.733  | 0.787  | 0.911         |
-| Bernoulli NB    | 0.712    | 0.684  | 0.678  | 0.842         |
-| Random Forest   |          |        |        |               |
-|     XGBoost     | 0.742    | 0.656  | 0.566  | 0.777         |
+| Dummy Stratified|   0.591  | 0.524  | 0.583  |   0.633       |
+|      kNN        |   0.73   |  0.68  |  0.80  | 0.81          |
+| Gaussian NB     |   0.72   |  0.49  | 0.49   |    0.81       |
+| Bernoulli NB    |   0.74   | 0.68   | 0.80   |  0.84         |
+| Random Forest   |   0.854  | 0.758  |  0.785 | 0.887         |
+|     XGBoost     |  **0.883**   | **0.789**  | **0.803**  |  **0.909**        |
 
 We used a neural network with hidden layers of sizes 500, 100, and 20. The output layer was of size 4. The input layer was of size 2614, the number of numerical features available after deleting features which had constant values throughout the data. The input data is first normalized using the calculated mean and standard deviation of the training data, before being input into the model.
 
