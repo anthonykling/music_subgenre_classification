@@ -3,11 +3,11 @@ Our primary objective was to train a variety of machine learning and deep learni
 
 # Table of Contents
 1. [Introduction](#Introduction)
-2. [Data Collection and Dataset](#Data Collection and Dataset)
-3. [Exploratory Data Analysis](#Exploratory Data Analysis)
-4. [Modeling Approach](#ModelingApproach)
-5. [Conclusion and Future Directions](#Conclusion and Future Directions)
-6. [Description of Repository](#Description of Repository)
+2. [Data Collection and Dataset](#Data-Collection-and-Dataset)
+3. [Exploratory Data Analysis](#Exploratory-Data-Analysis)
+4. [Modeling Approach](#Modeling-Approach)
+5. [Conclusion and Future Directions](#Conclusion-and-Future-Directions)
+6. [Description of Repository](#Description-of-Repository)
 
 ## Introduction
 Music genres are essential for organizing and categorizing music, making it easier for listeners to discover, enjoy, and connect with styles that resonate with them. Genres also carry historical, cultural, and sonic significance. Playlists, which often focus on a single subgenre, have become an increasingly popular way to discover new music.  
