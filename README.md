@@ -3,13 +3,18 @@ Our primary objective was to train a variety of machine learning and deep learni
 
 # Table of Contents
 1. [Introduction](#Introduction)
+2. [Data Collection and Dataset](#Data Collection and Dataset)
+3. [Exploratory Data Analysis](#Exploratory Data Analysis)
+4. [Modeling Approach](#Modeling Approach)
+5. [Conclusion and Future Directions](#Conclusion and Future Directions)
+6. [Description of Repository](#Description of Repository)
 
 ## Introduction
 Music genres are essential for organizing and categorizing music, making it easier for listeners to discover, enjoy, and connect with styles that resonate with them. Genres also carry historical, cultural, and sonic significance. Playlists, which often focus on a single subgenre, have become an increasingly popular way to discover new music.  
 
 We address the multi-label classification problem to identify a song's genre(s) using acoustic features extracted from audio files. We train a variety of supervised learning models to determine genre. Rather than focusing on broad genres (_e.g._, jazz, hip hop, electronic), we concentrate on four subgenres of electronic music: techno, house, trance, and drum and bass. While these subgenres are distinct and well-defined, they can be challenging to differentiate.
 
-## Data Collection and Data Set
+## Data Collection and Dataset
 We used a subset of the [AcousticBrainz](https://acousticbrainz.org/) data set, which contains a total of about 7.5 million unique songs.  Each song can be identified with its unique MusicBrainz ID (MBID), which comes from [MusicBrainz](https://musicbrainz.org/), a public database consisting of metadata on music.   Due to the massive size of the data set, extracting the entire data set was not practical.  Instead, we used an API to query MusicBrainz a list of MBIDs for each subgenre, then we used another API to extract the data from AcousticBrainz with the given MBID.  Not every song in MusicBrainz has data in AcouticBrainz -- indeed roughly half of the queried songs from MusicBrainz had corresponding data in AcousticBrainz.  After preliminary data cleaning, our data set had about 37,000 data points and about 2,300 acoustic features.
 
 AcousticBrainz does not store any audio files.  Rather, audio characteristics, such as loudness, dynamics, spectrum, beats, and chords, are extracted using [Essentia](https://essentia.upf.edu/streaming_extractor_music.html#music-descriptors) and stored in AcousticBrainz.  Many features are split based on bands of frequency, and then various statistics within each band (e.g. mean, variance), resulting in the many features.  Genre labels were obtained from MusicBrainz, which are user submitted and then voted by the community.  We consider the genre labels to be reasonably accurate.
@@ -40,7 +45,7 @@ To reduce features, we used a mixture of correlation analysis and PCA.  We consi
 
 ## Modeling Approach
 
-We first tried a few standard machine learning models.  The following table summarizes our accuracies for each genre class:
+We first tried a few standard machine learning models.  Each model was trained on the dataset with 476 features, as described above.  To account for the multi-label nature of our dataset, we wrapped each model with a MultiOutputClassifier.  Lastly, we did hyperparameter tuning with RandomSearchCV.  The Dummy Stratified model guesses the genre label based on how they are distrubted through the dataset, serving as a baseline to compare our results to.  The following table summarizes our accuracies for each genre class:
 |                 | Trance   | House  | Techno | Drum and Bass |  
 | ---------       | -------- | ------ | ------ | ------------- |
 | Dummy Stratified|   0.591  | 0.524  | 0.583  |   0.633       |
@@ -61,7 +66,7 @@ We can see that XGBoost outperforms all other models for each genre.  The follow
 | Random Forest   |  0.68   | 0.64  | 0.53  |  0.71        |
 |  **XGBoost**    |  **0.77**   | **0.72**  | 0.60  |  **0.79**        |
 
-We can see that XGBoost outperforms in most except for Techno.  Please refer to the model notebooks for results on recall and precision.
+We can see that XGBoost outperforms in most except for Techno.  Please refer to the model notebooks for results on recall and precision.  In particular, one may care more about precision for subgenre classification for the purposes of playlist creation, for example.
 
 We used a neural network with hidden layers of sizes 500, 100, and 20. The output layer was of size 4. The input layer was of size 2614, the number of numerical features available after deleting features which had constant values throughout the data. The input data is first normalized using the calculated mean and standard deviation of the training data, before being input into the model.
 
@@ -92,10 +97,13 @@ The dataset with 476 features detailed in the Exploratory Data Analysis section 
 | Precision | 0.547    | 0.641  | 0.678  | 0.714         |
 
 ## Conclusion and Future Directions
+XGBoost and our neural networks were very similar in performance.  For Trance and House, xGBoost slightly outperformed, while our neural networks outperformed on Techno and Drum and Bass.  Among all the models, Techno and House tended to have lower accuracies (besides the neural network trained on the 476 feature dataset).  Based on our EDA, Techno appeared to be more "diverse" while House appeared to be more "standard".  These qualities might have made it difficult to be distinguished among the data.  Furthermore, these genres tend to be the more well known subgenres of electronic music, which may potentially lead to mislabeled ground truths.
+
+There are various future directions which would be interesting to investigate.  While the MusicBrainz genre labels were reasonably accurate, they can be improved.  For example, one can combine genre labels from multiple sources to increase our confidence in the ground truth labels.  It would be interesting to also look at other subgenres, either in other styles of music, or even further subgenres of electronic music.  For genres which are more lyrical, it would be interesting to also use lyrics as a feature, in addition to acoustic information.  Lastly, we stopped our data collection after obtaining roughly 40,000 songs from AcousticBrainz due to time constraints.  However, this wasn't exhaustive and one can obtain more data.  We did obtain all drum and bass recordings in AcousticBrainz, so this may lead to a more imbalanced dataset.
 
 ## Description of Repository
 The building_AcousticBrainz_dataset.ipynb notebook illustrates how we use the MusicBrainz and AcousticBrainz API to create our dataset.  The dataset is presented as a folder of json files; each file represents a song.
 
 The Cleaning_and_EDA folder contains scripts and notebooks showing how we built our dataset from these json files into a pandas DataFrame.  In addition, it also demonstrates how cleaning process and exploratory data analysis we considered.
 
-The Models folder contains models.
+The Models folder contains models we trained on our dataset.
