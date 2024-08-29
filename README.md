@@ -46,13 +46,29 @@ We used a neural network with hidden layers of sizes 500, 100, and 20. The outpu
 
 The training data was first split into a training set of size 30000 and a test set of size 6885. The neural network was trained using a gradient descent algorithm with a learning rate of 0.005 and a momentum of 0.9. The batch size during training was 128, to help speed up optimization, and the loss was calculated using the binary cross entropy loss. The training took place over 50 epochs and took approximately 24.5 seconds for all 50 epochs.
 
-We then performed a 5-fold cross validation on the training set and found that each iteration gave similar accuracy scores. Further training on the test set did not significantly improve the accuracy scores of the model. The model was finally trained on the full training set and then evaluated on the test set:
+We then performed a 5-fold cross validation on the training set and found that each iteration gave similar accuracy scores. The average scores after cross validation are:
 
 |           | Trance   | House  | Techno | Drum and Bass |
 | --------- | -------- | ------ | ------ | ------------- |
-| Accuracy  | 0.8630   | 0.7473 | 0.7981 | 0.9192        |
-| Recall    | 0.7604   | 0.6821 | 0.6419 | 0.8387        |
-| Precision | 0.7466   | 0.6964 | 0.6641 | 0.8377        |
+| Accuracy  | 0.835    | 0.733  | 0.787  | 0.911         |
+| Recall    | 0.712    | 0.684  | 0.678  | 0.842         |
+| Precision | 0.742    | 0.656  | 0.566  | 0.777         |
+
+Further training on the test set did not significantly improve the accuracy scores of the model. The model was finally trained on the full training set and then evaluated on the test set:
+
+|           | Trance   | House  | Techno | Drum and Bass |
+| --------- | -------- | ------ | ------ | ------------- |
+| Accuracy  | 0.863    | 0.747  | 0.798  | 0.919         |
+| Recall    | 0.760    | 0.682  | 0.642  | 0.839         |
+| Precision | 0.747    | 0.696  | 0.664  | 0.838         |
+
+The dataset with 476 features detailed in the Exploratory Data Analysis section was also used to train a model with the same sizes of hidden layers, only differing in the input layer which now has size 476. This model was trained, as detailed previously, on 30000 samples and tested on the remaining 6885 samples. The results were:
+
+|           | Trance   | House  | Techno | Drum and Bass |
+| --------- | -------- | ------ | ------ | ------------- |
+| Accuracy  | 0.801    | 0.751  | 0.861  | 0.891         |
+| Recall    | 0.711    | 0.708  | 0.807  | 0.811         |
+| Precision | 0.547    | 0.641  | 0.678  | 0.714         |
 
 ## Conclusion and Future Directions
 
