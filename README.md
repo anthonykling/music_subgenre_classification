@@ -40,6 +40,16 @@ To reduce features, we used a mixture of correlation analysis and PCA.  We consi
 
 ## Modeling Approach
 
+We first tried a few standard machine learning models.  The following table summarizes our results for each genre class:
+|                 | Trance   | House  | Techno | Drum and Bass |
+| ---------       | -------- | ------ | ------ | ------------- |
+| Dummy Stratified|          |        |        |               |
+|      kNN        |          |        |        |               |
+| Gaussian NB     | 0.835    | 0.733  | 0.787  | 0.911         |
+| Bernoulli NB    | 0.712    | 0.684  | 0.678  | 0.842         |
+| Random Forest   |          |        |        |               |
+|     XGBoost     | 0.742    | 0.656  | 0.566  | 0.777         |
+
 We used a neural network with hidden layers of sizes 500, 100, and 20. The output layer was of size 4. The input layer was of size 2614, the number of numerical features available after deleting features which had constant values throughout the data. The input data is first normalized using the calculated mean and standard deviation of the training data, before being input into the model.
 
 The training data was first split into a training set of size 30000 and a test set of size 6885. The neural network was trained using a gradient descent algorithm with a learning rate of 0.005 and a momentum of 0.9. The batch size during training was 128, to help speed up optimization, and the loss was calculated using the binary cross entropy loss. The training took place over 50 epochs and took approximately 24.5 seconds for all 50 epochs.
