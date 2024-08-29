@@ -5,7 +5,7 @@ Our primary objective was to train a variety of machine learning and deep learni
 1. [Introduction](#Introduction)
 2. [Data Collection and Dataset](#Data Collection and Dataset)
 3. [Exploratory Data Analysis](#Exploratory Data Analysis)
-4. [Modeling Approach](#Modeling Approach)
+4. [Modeling Approach](#ModelingApproach)
 5. [Conclusion and Future Directions](#Conclusion and Future Directions)
 6. [Description of Repository](#Description of Repository)
 
@@ -45,7 +45,7 @@ To reduce features, we used a mixture of correlation analysis and PCA.  We consi
 
 ## Modeling Approach
 
-We first tried a few standard machine learning models.  Each model was trained on the dataset with 476 features, as described above.  To account for the multi-label nature of our dataset, we wrapped each model with a MultiOutputClassifier.  Lastly, we did hyperparameter tuning with RandomSearchCV.  The Dummy Stratified model guesses the genre label based on how they are distrubted through the dataset, serving as a baseline to compare our results to.  The following table summarizes our accuracies for each genre class:
+We first tried a few standard machine learning models.  Each model was trained on the dataset with 476 features, as described above.  To account for the multi-label nature of our dataset, we wrapped each model with a MultiOutputClassifier or OneVsRest.  Lastly, we did hyperparameter tuning with RandomSearchCV.  The Dummy Stratified model guesses the genre label based on how they are distrubted through the dataset, serving as a baseline to compare our results to.  The following table summarizes our accuracies for each genre class:
 |                 | Trance   | House  | Techno | Drum and Bass |  
 | ---------       | -------- | ------ | ------ | ------------- |
 | Dummy Stratified|   0.591  | 0.524  | 0.583  |   0.633       |
