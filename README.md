@@ -26,11 +26,11 @@ The metadata from MetaBrainz contains a 'tag' attribute, which contains the genr
 
 We did some preliminary data analysis to get a rough idea of how our data looked.  However, due to the large amount of features, it was challenging to get a detailed sense of them.
 
-Below illustrates a histogram of the means and variances of each feature for each genre.
-![image](https://github.com/user-attachments/assets/59340f6f-a7ec-4c23-b8e6-83728fb8abb7)
-![image](https://github.com/user-attachments/assets/f43ec3f4-63f1-4aee-b4f3-ff16ece9caf4 | width = 500)
+Below illustrates a histogram of the means and variances of each standardized feature for each genre.
+<img src = "https://github.com/user-attachments/assets/59340f6f-a7ec-4c23-b8e6-83728fb8abb7" width = 500>
 <img src = "https://github.com/user-attachments/assets/f43ec3f4-63f1-4aee-b4f3-ff16ece9caf4" width = 500>
 
+We see that techno has greater mixture of variances and a flatter distribution of means, indicating that techno may be more diverse sonically while house has means concentrated closer to 0 and variances closer to 1, indicating that house may sound more 'generic'.
 
 
 ## Modeling Approach
